@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小叶同学的新年惊喜</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(#ff3366, #ff6b6b);
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        /* 霓虹灯文字 */
+        .neon-text {
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            animation: glow 2s ease-in-out infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00de; }
+            50% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ff0000; }
+        }
+
+        /* 红包动画 */
+        .red-envelope {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translateX(-50%);
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+
+        .money {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            width: 150px;
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        .red-envelope:active + .money {
+            opacity: 1;
+            transform: translate(-50%, -100px) rotate(15deg);
+        }
+
+        /* 雪花和花瓣 */
+        .snow, .petal {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        .petal { background: #ff99cc; }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="neon-text">🐍 小叶同学，2025新年快乐！</h1>
+    
+    <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" 
+         class="red-envelope" 
+         alt="红包"
+         onclick="playMusic()">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/5890/5890089.png" 
+         class="money" 
+         alt="200元">
+
+    <audio id="bgm" src="https://cdn.jsdelivr.net/gh/yourusername/haoyunlai.mp3"></audio>
+
+    <script>
+        // 生成雪花和花瓣
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = Math.random() > 0.5 ? 'snow' : 'petal';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        // 点击播放音乐
+        function playMusic() {
+            const audio = document.getElementById('bgm');
+            audio.play();
+            audio.loop = true;
+        }
+
+        window.onload = createParticles;
+    </script>
+</body>
+</html>
